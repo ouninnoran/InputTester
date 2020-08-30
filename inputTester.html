@@ -191,8 +191,9 @@
                 window.scrollTo(0,90)
             })
             function input_html(){
-                let text = document.forms.input.text.value
+                let text = ""+document.forms.input.text.value
                 if(text!=""){
+                    text = decodeURI(text)
                     result_zone.innerHTML = text;
                     console.dir(result_zone)
                     location.href = "#output"
@@ -204,8 +205,9 @@
                 }
             }
             function input_text(){
-                let text = document.forms.input.text.value
+                let text = ""+document.forms.input.text.value
                 if(text!=""){
+                    text = decodeURI(text)
                     result_zone.innerText = text;
                     location.href = "#output"
                     log_input(true)
@@ -272,12 +274,16 @@
                     LINE = 2
                     SURPLUS = TOTAL - 2;
                 }
-                SURPLUS = LINE-SURPLUS+LINE
+                
+                if(SURPLUS!==0){
+                    SURPLUS = LINE-SURPLUS+LINE
                 if(SURPLUS>=LINE)SURPLUS-=LINE;
                 for(let i=0;i<SURPLUS;i++){
                     TEXT = TEXT+"　"
                     TOTAL++
                 }
+                }
+                
                 LINE = Math.floor(Math.sqrt(TOTAL))
                 console.log(SURPLUS)
                 console.log(TEXT)
